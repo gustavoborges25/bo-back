@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  postgres:
+    image: postgres
+    restart: always
+    volumes:
+      - './storage/app/postgres/data:/var/lib/postgresql/data'
+    environment:
+      - POSTGRES_DB=gusgo
+      - POSTGRES_USER=gusgo
+      - POSTGRES_PASSWORD=gusgo
+    ports:
+      - '5432:5432'
