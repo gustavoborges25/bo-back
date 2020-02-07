@@ -22,11 +22,12 @@ import javax.persistence.Table;
 public class City extends BaseEntity {
 
     @Column(precision = 20, nullable = false)
-    private Long ibgeId;
+    private int ibgeId;
 
     @Column(nullable = false)
     private String name;
 
     @ManyToOne
     private State state;
+
 }

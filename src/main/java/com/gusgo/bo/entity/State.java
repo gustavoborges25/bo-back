@@ -23,7 +23,7 @@ import java.util.List;
 public class State extends BaseEntity {
 
     @Column(precision = 20, nullable = false)
-    private Long ibgeId;
+    private int ibgeId;
 
     @Column(length = 2, nullable = false)
     private String abbreviation;
