@@ -49,7 +49,7 @@ public class CityService {
     private City requestDTOToEntity(CityRequestDTO cityRequestDTO, City city) {
         city.setIbgeId(cityRequestDTO.getIbgeId());
         city.setName(cityRequestDTO.getName());
-        State state = stateRepository.findById(cityRequestDTO.getStateId()).orElseThrow(() -> new ServiceException("DB-1"));
+        State state = stateRepository.findById(cityRequestDTO.getStateId()).orElseThrow(() -> new ServiceException("BO-1"));
         city.setState(state);
 
         return city;

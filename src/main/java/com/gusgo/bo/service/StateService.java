@@ -33,7 +33,7 @@ public class StateService {
     }
 
     public StateResponseDTO findByIbgeId(int ibgeId) {
-        State state = stateRepository.findByIbgeId(ibgeId).orElseThrow(() -> new ServiceException("DB-1"));
+        State state = stateRepository.findByIbgeId(ibgeId).orElseThrow(() -> new ServiceException("BO-1"));
         return entityToResponseDTO(state);
     }
 
