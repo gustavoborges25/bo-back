@@ -26,13 +26,10 @@ public class CityService {
     }
 
     @Transactional
-    public CityResponseDTO save(CityRequestDTO cityRequestDTO) {
-        // validaçao
+    public void save(CityRequestDTO cityRequestDTO) {
         City city = findByIbgeIdOrNew(cityRequestDTO.getIbgeId());
         City updatedCity = requestDTOToEntity(cityRequestDTO, city);
         cityRepository.save(updatedCity);
-
-        return entityToResponseDTO(updatedCity);
     }
 
     public List<CityResponseDTO> getCitiesByState(UUID stateId) {
@@ -40,6 +37,10 @@ public class CityService {
         List<CityResponseDTO> citiesResponseDTO = new ArrayList<>();
         cities.forEach(city -> citiesResponseDTO.add(entityToResponseDTO(city)));
         return citiesResponseDTO;
+    }
+
+    public City findById(UUID cityId) {
+        return cityRepository.findById(cityId).orElseThrow(() -> new ServiceException("BO-2"));
     }
 
     private City findByIbgeIdOrNew(int ibgeId) {

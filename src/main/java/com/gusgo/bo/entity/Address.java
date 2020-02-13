@@ -40,7 +40,8 @@ public class Address extends BaseEntity {
     @JoinColumn(name = "city_id", nullable = false)
     private City city;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "person_id")
     private Person person;
 
 }

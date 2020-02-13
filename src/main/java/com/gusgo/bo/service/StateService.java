@@ -22,14 +22,10 @@ public class StateService {
     }
 
     @Transactional
-    public StateResponseDTO save(StateRequestDTO stateRequestDTO) {
-        // validaçao
-
+    public void save(StateRequestDTO stateRequestDTO) {
         State state = findByIbgeIdOrNew(stateRequestDTO.getIbgeId());
         State updatedState = requestDTOToEntity(stateRequestDTO, state);
         stateRepository.save(updatedState);
-
-        return entityToResponseDTO(updatedState);
     }
 
     public StateResponseDTO findByIbgeId(int ibgeId) {

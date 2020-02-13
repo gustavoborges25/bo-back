@@ -21,7 +21,7 @@ import javax.persistence.Table;
 @Table(name = "bo_email")
 public class Email extends BaseEntity {
 
-    @Column(length = 30, nullable = false)
+    @Column(length = 50, nullable = false)
     private String email;
 
     @ManyToOne

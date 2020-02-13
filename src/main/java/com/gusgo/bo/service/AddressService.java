@@ -1,9 +1,10 @@
 package com.gusgo.bo.service;
 
+import com.gusgo.bo.dto.request.AddressRequestDTO;
 import com.gusgo.bo.dto.request.CityRequestDTO;
 import com.gusgo.bo.dto.request.StateRequestDTO;
-import com.gusgo.bo.entity.IbgeCity;
-import com.gusgo.bo.entity.IbgeState;
+import com.gusgo.bo.entity.*;
+import com.gusgo.bo.repository.AddressRepository;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -21,12 +22,14 @@ public class AddressService {
     private final String URL_STATES = "https://servicodados.ibge.gov.br/api/v1/localidades/estados";
     private final String URL_CITIES = "https://servicodados.ibge.gov.br/api/v1/localidades/municipios";
 
+    private final AddressRepository addressRepository;
     private final StateService stateService;
     private final CityService cityService;
 
-    public AddressService(StateService stateService, CityService cityService) {
+    public AddressService(StateService stateService, CityService cityService, AddressRepository addressRepository) {
         this.stateService = stateService;
         this.cityService = cityService;
+        this.addressRepository = addressRepository;
     }
 
     @Transactional
@@ -38,6 +41,23 @@ public class AddressService {
     public void updateCities() {
         List<IbgeCity> cities = getCitiesInIbgeApi();
         saveCities(cities);
+    }
+
+    @Transactional
+    public Address save(AddressRequestDTO addressRequestDTO, Person person) {
+        City city = cityService.findById(addressRequestDTO.getCityId());
+        Address address = Address.builder()
+                .street(addressRequestDTO.getStreet())
+                .number(addressRequestDTO.getNumber())
+                .complement(addressRequestDTO.getComplement())
+                .cep(addressRequestDTO.getCep())
+                .neighborhood(addressRequestDTO.getNeighborhood())
+                .type(addressRequestDTO.getType())
+                .city(city)
+                .person(person)
+                .build();
+
+        return addressRepository.save(address);
     }
 
     private RestTemplate getRestTemplate() {
@@ -73,7 +93,6 @@ public class AddressService {
         cities.forEach((city -> {
             UUID id = stateService.findByIbgeId(city.getStateIbgeId()).getId();
             cityService.save(new CityRequestDTO(city.getId(), city.getNome(), id));
-
         }));
     }
 
