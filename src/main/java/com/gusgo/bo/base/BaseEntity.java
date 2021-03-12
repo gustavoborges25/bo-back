@@ -1,15 +1,17 @@
 package com.gusgo.bo.base;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
-import org.hibernate.annotations.GenericGenerator;
+import java.util.UUID;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import java.util.UUID;
+
+import org.hibernate.annotations.GenericGenerator;
+
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @MappedSuperclass
 @EqualsAndHashCode(of = {"id"})

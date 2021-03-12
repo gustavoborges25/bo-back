@@ -1,12 +1,19 @@
 package com.gusgo.bo.dto.request.registration;
 
-import com.gusgo.bo.annotation.UUIDValidation;
-import lombok.*;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.util.UUID;
+
+import com.gusgo.bo.annotation.UUIDValidation;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
@@ -16,6 +23,9 @@ import java.util.UUID;
 @NoArgsConstructor
 public class AddressRequestDTO {
 
+    @UUIDValidation
+    private UUID id;
+    
     @NotBlank
     @Size(min = 1, max = 255)
     private String street;

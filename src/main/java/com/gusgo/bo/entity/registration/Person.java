@@ -17,19 +17,22 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Inheritance(strategy= InheritanceType.JOINED)
+@Inheritance(strategy= InheritanceType.TABLE_PER_CLASS)
 @Table(name = "bo_person")
 public abstract class Person extends BaseEntity {
 
-    @OneToMany(mappedBy = "person")
+    @OneToMany(mappedBy = "person" , cascade = CascadeType.ALL)
     private List<Address> addresses;
 
-    @OneToMany(mappedBy = "person")
+    @OneToMany(mappedBy = "person" , cascade = CascadeType.ALL)
     private List<Phone> phones;
 
-    @OneToMany(mappedBy = "person")
+    @OneToMany(mappedBy = "person" , cascade = CascadeType.ALL)
     private List<Email> emails;
 
-    private LocalDate registration_date;
+    private LocalDate registrationDate;
+    
+    private LocalDate updateDate;
+
 
 }

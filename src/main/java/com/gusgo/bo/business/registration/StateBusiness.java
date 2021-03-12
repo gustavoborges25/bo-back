@@ -1,16 +1,14 @@
 package com.gusgo.bo.business.registration;
 
-import com.gusgo.bo.dto.request.registration.StateRequestDTO;
-import com.gusgo.bo.dto.response.registration.StateResponseDTO;
-import com.gusgo.bo.entity.registration.State;
-import com.gusgo.bo.entity.support.ibge.IbgeApi;
-import com.gusgo.bo.entity.support.ibge.IbgeState;
-import com.gusgo.bo.exception.ServiceException;
-import com.gusgo.bo.repository.registration.StateRepository;
+import java.util.List;
+
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import com.gusgo.bo.entity.registration.State;
+import com.gusgo.bo.entity.support.ibge.IbgeApi;
+import com.gusgo.bo.exception.ServiceException;
+import com.gusgo.bo.repository.registration.StateRepository;
 
 @Component
 public class StateBusiness {
@@ -59,7 +57,5 @@ public class StateBusiness {
                         .build()
                 );
     }
-
-
 
 }

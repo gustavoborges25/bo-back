@@ -43,4 +43,18 @@ public class NaturalPersonController extends BaseController {
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseDTO<>(naturalPersonResponseDTO));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<ResponseDTO<NaturalPersonResponseDTO>> update(@PathVariable("id") UUID id, @Valid @RequestBody NaturalPersonRequestDTO naturalPersonRequestDTO) {
+        NaturalPersonResponseDTO naturalPersonResponseDTO = naturalPersonService.update(id, naturalPersonRequestDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseDTO<>(naturalPersonResponseDTO));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable("id") UUID id) {
+        naturalPersonService.delete(id);
+        return ResponseEntity
+        		.noContent()
+        		.build();
+    }
+    
 }

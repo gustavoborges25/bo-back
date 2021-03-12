@@ -1,8 +1,8 @@
 package com.gusgo.bo.entity.support.ibge;
 
-import com.gusgo.bo.business.registration.StateBusiness;
-import com.gusgo.bo.entity.registration.City;
-import com.gusgo.bo.entity.registration.State;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.context.annotation.Lazy;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -11,8 +11,9 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.gusgo.bo.business.registration.StateBusiness;
+import com.gusgo.bo.entity.registration.City;
+import com.gusgo.bo.entity.registration.State;
 
 @Component
 public class IbgeApi {

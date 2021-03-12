@@ -17,8 +17,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "bo_address")
 public class Address extends BaseEntity {
-
-    @Column(nullable = false)
+	
+	@Column(nullable = false)
     private String street;
 
     @Column(length = 20, nullable = false)
@@ -40,8 +40,8 @@ public class Address extends BaseEntity {
     @JoinColumn(name = "city_id", nullable = false)
     private City city;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "person_id")
+    @ManyToOne
+    @JoinColumn(name = "person_id", referencedColumnName = "id" )
     private Person person;
 
 }
